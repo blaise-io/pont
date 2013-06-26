@@ -18,6 +18,15 @@ Z.Point.prototype.distanceTo = function(point) {
 };
 
 Z.Point.prototype.angleTo = function(point) {
-    var dx = point.x - this.x, dy = this.y - point.y;
-    return Math.atan2(dx, dy) * (180 / Math.PI);
+    var dy = this.y - point.y, dx = this.x - point.x;
+    return Math.atan2(dy, dx) * (180 / Math.PI);
+};
+
+Z.Point.prototype.stepTo = function(point, distance) {
+    return this.stepAngle(this.angleTo(point), distance);
+};
+
+Z.Point.prototype.stepAngle = function(angle, distance) {
+    var cos = Math.cos(angle) * distance, sin = Math.sin(angle) * distance;
+    return new Z.Point(this.x + cos, this.y + sin);
 };

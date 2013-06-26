@@ -14,7 +14,7 @@ Z.Canvas = function() {
 
     this.boats = [];
     this.path = new Z.Path();
-    this.ferry = new Z.Entity('image/ferry.png', new Z.Point(100, 100), 90, .3);
+    this.ferry = new Z.Entity('image/ferry.png', new Z.Point(100, 100), 90, 0.3);
 
     this.paint();
 };
@@ -22,6 +22,20 @@ Z.Canvas = function() {
 Z.Canvas.prototype.paint = function() {
     window.requestAnimationFrame(this.paint.bind(this));
     this.ctx.clearRect(0, 0, this.width, this.height);
+
+    var ferry = this.ferry;
+    var next = this.path.points[0];
+    if (next) {
+        // Smooth rotating like a real boat
+        ferry.angle += (ferry.point.angleTo(next) - ferry.angle) / 100;
+        ferry.point = ferry.point.stepTo(next, 1);
+
+        if (ferry.point.distanceTo(next) < 5) {
+            this.path.points.shift();
+        }
+    } else {
+        ferry.point = ferry.point.stepAngle(ferry.angle, 1);
+    }
 
     this.paintPath(this.path);
     this.paintEntities(this.boats);
