@@ -7,22 +7,17 @@
  */
 Z.Path = function() {
     this.points = [];
-    this.drawCurve.apply(this, arguments);
+    this.drawCurve(Array.prototype.slice.call(arguments));
 };
 
-Z.Path.prototype.drawCurve = function() {
-    var arg0, argn;
-
-    arg0 = arguments[0];
-    argn = arguments[arguments.length - 1];
-
-    for (var i = 0, m = arguments.length; i < m; i++) {
-        this.plotBezierQuad(
-            arguments[i - 1] || arg0,
-            arguments[i + 0] || arg0,
-            arguments[i + 1] || argn,
-            arguments[i + 2] || argn
-        );
+/**
+ * @param {Array.<Z.Point>} points
+ */
+Z.Path.prototype.drawCurve = function(points) {
+    points.unshift(points[0]);
+    points.push(points[points.length - 1]);
+    for (var i = 0, m = points.length; i + 3 < m; i++) {
+        this.plotBezierQuad(points[i], points[i + 1], points[i + 2], points[i + 3]);
     }
 };
 
@@ -62,15 +57,13 @@ Z.Path.prototype.getControlPoints = function(P0, P1, P2) {
 };
 
 Z.Path.prototype.plotBezierQuad = function(P0, P1, P2, P3) {
-    var step, C1, C2, ctr, p1, p2, p3, p4, ss, ss2, ss3, pre1, pre2, pre4, pre5,
+    var C1, C2, ctr, p1, p2, p3, p4, ss, ss2, ss3, pre1, pre2, pre4, pre5,
         tmp1x, tmp1y, tmp2x, tmp2y, pf, dfx, dfy, ddfx, ddfy, dddfx, dddfy;
-
-    step = Z.settings.step;
 
     C1 = this.getControlPoints(P0, P1, P2);
     C2 = this.getControlPoints(P1, P2, P3);
 
-    ctr = Math.floor(( (C1.l1 || C1.l2) + (C2.l2 || C2.l1) ) / step);
+    ctr = Math.floor(( (C1.l1 || C1.l2) + (C2.l2 || C2.l1) ) / Z.STEP);
 
     pf = P1;
     p1 = P1;

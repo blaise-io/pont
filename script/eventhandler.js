@@ -20,23 +20,23 @@ Z.EventHandler.prototype.addListeners = function() {
     };
 
     if ('ontouchmove' in document) {
-        document.addEventListener('touchstart', function(ev) {
+        document.ontouchstart = function(ev) {
             ev.preventDefault(); // Don't scroll the page
-        });
-        el.addEventListener('touchstart', this.boundEvents.start, false);
-        el.addEventListener('touchmove', this.boundEvents.move, false);
-        el.addEventListener('touchend', this.boundEvents.stop, false);
+        };
+        el.ontouchstart = this.boundEvents.start;
+        el.ontouchmove = this.boundEvents.move;
+        el.ontouchend = this.boundEvents.stop;
     } else {
-        el.addEventListener('mousedown', this.boundEvents.start, false);
-        el.addEventListener('mousemove', this.boundEvents.move, false);
-        el.addEventListener('mouseup', this.boundEvents.stop, false);
+        el.onmousedown = this.boundEvents.start;
+        el.onmousemove = this.boundEvents.move;
+        el.onmouseup = this.boundEvents.stop;
     }
 };
 
 Z.EventHandler.prototype.eventStart = function(ev) {
     var point = new Z.Point(ev.pageX, ev.pageY);
     this.recording = true;
-    this.draggedPoints = [point];
+    this.draggedPoints = [point, point];
 };
 
 Z.EventHandler.prototype.eventMove = function(ev) {
@@ -51,13 +51,13 @@ Z.EventHandler.prototype.eventMove = function(ev) {
 };
 
 Z.EventHandler.prototype.eventStop = function() {
-    this.draggedPoints[this.draggedPoints.length - 1] = this.lastPoint;
+    this.draggedPoints.push(this.lastPoint);
     this.recording = false;
     this.updatePath();
 };
 
 Z.EventHandler.prototype.lastPointClose = function(point) {
-    var dx, dy, prevPoint, minDistance = Z.settings.minDragDistance;
+    var dx, dy, prevPoint, minDistance = Z.MIN_DRAG_DISTANCE;
     prevPoint = this.draggedPoints[this.draggedPoints.length - 1];
     dx = Math.abs(point.x - prevPoint.x);
     dy = Math.abs(point.y - prevPoint.y);
@@ -68,8 +68,5 @@ Z.EventHandler.prototype.updatePath = function() {
     var PathFactory, path;
     PathFactory = Z.Path.bind.apply(Z.Path, this.draggedPoints);
     path = new PathFactory();
-    Z.canvas.clear();
-    for (var i = 0, m = path.points.length; i < m; i++) {
-        Z.canvas.drawSubPoint(path.points[i]);
-    }
+    Z.canvas.path = path;
 };

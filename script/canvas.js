@@ -12,10 +12,9 @@ Z.Canvas = function() {
         this.setVendorRequestAnimationFrame();
     }
 
-    this.path = [];
-    this.level = [];
     this.boats = [];
-    this.ferries = [];
+    this.path = new Z.Path();
+    this.ferry = new Z.Entity('image/ferry.png', new Z.Point(100, 100), 90, .3);
 
     this.paint();
 };
@@ -24,10 +23,9 @@ Z.Canvas.prototype.paint = function() {
     window.requestAnimationFrame(this.paint.bind(this));
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    this.paintEntity(this.path);
-    this.paintEntity(this.level);
+    this.paintPath(this.path);
     this.paintEntities(this.boats);
-    this.paintEntities(this.ferries);
+    this.paintEntity(this.ferry);
 };
 
 /**
@@ -41,14 +39,40 @@ Z.Canvas.prototype.drawSubPoint = function(point) {
     this.ctx.fill();
 };
 
+/**
+ * @param {Z.Path} path
+ */
+Z.Canvas.prototype.paintPath = function(path) {
+    for (var i = 0, m = path.points.length; i < m; i++) {
+        this.drawSubPoint(path.points[i]);
+    }
+};
+
+/**
+ * @param {Array.<Z.Entity>} entities
+ */
 Z.Canvas.prototype.paintEntities = function(entities) {
     for (var i = 0, m = entities.length; i < m; i++) {
         this.paintEntity(entities[i]);
     }
 };
 
+/**
+ * @param {Z.Entity} entity
+ */
 Z.Canvas.prototype.paintEntity = function(entity) {
+    var width, height, ctx = this.ctx;
 
+    width = entity.width * entity.scale;
+    height = entity.height * entity.scale;
+
+    if (entity.ready) {
+        ctx.save();
+        ctx.translate(entity.point.x, entity.point.y);
+        ctx.rotate(entity.angle * Math.PI / 180);
+        ctx.drawImage(entity.img, width / -2, height / -2, width, height);
+        ctx.restore();
+    }
 };
 
 Z.Canvas.prototype.clear = function() {
