@@ -9,7 +9,7 @@ Z.Traffic = function(level) {
     this.boats = [];
     this.boats.push(this.getBarge());
     this.spawnBoatProgress = 0;
-    this.spawnBoatInterval = 5000;
+    this.spawnBoatInterval = 7000 * Math.sqrt(level);
 };
 
 Z.Traffic.prototype.getBarge = function() {
@@ -21,6 +21,9 @@ Z.Traffic.prototype.getBarge = function() {
     ]));
 };
 
+/**
+ * @param {number} diff
+ */
 Z.Traffic.prototype.updateTraffic = function(diff) {
     this.checkSpawnBoat(diff);
     for (var i = 0, m = this.boats.length; i < m; i++) {
@@ -35,10 +38,13 @@ Z.Traffic.prototype.updateTraffic = function(diff) {
     }
 };
 
+/**
+ * @param {number} diff
+ */
 Z.Traffic.prototype.checkSpawnBoat = function(diff) {
     this.spawnBoatProgress += diff;
     if (this.spawnBoatProgress > this.spawnBoatInterval) {
         this.boats.push(this.getBarge());
-        this.spawnBoatProgress -= this.spawnBoatInterval;
+        this.spawnBoatProgress %= this.spawnBoatInterval;
     }
 };

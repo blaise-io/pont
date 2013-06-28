@@ -13,7 +13,9 @@ Z.Game = function() {
 
 Z.Game.prototype.updateGame = function() {
     var diff = new Date() - this.updated;
-    this.traffic.updateTraffic(diff);
-    this.ferry.updateBoat(diff);
+    if (diff > 7 && diff < 200) {
+        this.traffic.updateTraffic(diff);
+        this.ferry.updateBoat(diff);
+    }
     this.updated = new Date();
 };
