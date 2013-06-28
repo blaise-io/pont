@@ -13,6 +13,15 @@ Z.Point = function(x, y) {
 };
 
 /**
+ * @param {number} dx
+ * @param {number} dy
+ * @returns {Z.Point}
+ */
+Z.Point.prototype.translate = function(dx, dy) {
+    return new Z.Point(this.x + dx, this.y + dy);
+};
+
+/**
  * @param {Z.Point} target
  * @returns {number}
  */
@@ -50,6 +59,19 @@ Z.Point.prototype.stepTo = function(target, distance, currentRadian, damping) {
 Z.Point.prototype.stepRadian = function(angle, distance) {
     var cos = Math.cos(angle) * distance, sin = Math.sin(angle) * distance;
     return new Z.Point(this.x - cos, this.y - sin);
+};
+
+/**
+ * @param {number} angle
+ * @param {number} xDistance
+ * @param {number} yDistance
+ * @returns {Z.Point}
+ */
+Z.Point.prototype.stepRadian2 = function(angle, xDistance, yDistance) {
+    return new Z.Point(
+        this.x + (Math.cos(angle) * xDistance - Math.sin(angle) * yDistance),
+        this.y + (Math.sin(angle) * xDistance + Math.cos(angle) * yDistance)
+    );
 };
 
 /**

@@ -29,6 +29,9 @@ Z.Entity.prototype.preloadSrc = function(src) {
         this.ready = true;
         this.width = img.width;
         this.height = img.height;
+        if (this.onload) {
+            this.onload(this);
+        }
     }.bind(this);
 
     return img;

@@ -21,9 +21,11 @@ Z.Canvas = function() {
 };
 
 Z.Canvas.prototype.paint = function() {
-    if (!this.err) {
-        window.requestAnimationFrame(this.paint.bind(this));
+    if (this.err) {
+        return;
     }
+
+    window.requestAnimationFrame(this.paint.bind(this));
 
     this.ctx.clearRect(0, 0, this.width, this.height);
 
@@ -37,10 +39,21 @@ Z.Canvas.prototype.paint = function() {
 /**
  * @param {Z.Point} point
  */
-Z.Canvas.prototype.drawSubPoint = function(point) {
+Z.Canvas.prototype.drawPathPoint = function(point) {
     this.ctx.fillStyle = 'black';
     this.ctx.beginPath();
     this.ctx.arc(point.x, point.y, 1, 0, Math.PI * 2, true);
+    this.ctx.closePath();
+    this.ctx.fill();
+};
+
+/**
+ * @param {Z.Point} point
+ */
+Z.Canvas.prototype.drawCrashPoint = function(point) {
+    this.ctx.fillStyle = 'red';
+    this.ctx.beginPath();
+    this.ctx.arc(point.x, point.y, 3, 0, Math.PI * 2, true);
     this.ctx.closePath();
     this.ctx.fill();
 };
@@ -51,7 +64,7 @@ Z.Canvas.prototype.drawSubPoint = function(point) {
 Z.Canvas.prototype.paintPath = function(path) {
     if (path) {
         for (var i = 0, m = path.points.length; i < m; i++) {
-            this.drawSubPoint(path.points[i]);
+            this.drawPathPoint(path.points[i]);
         }
     }
 };
