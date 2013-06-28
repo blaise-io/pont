@@ -42,11 +42,8 @@ Z.Canvas.prototype.paint = function() {
 Z.Canvas.prototype.drawPathPoint = function(point) {
     var ctx = this.ctx;
 
-    ctx.fillStyle = 'black';
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, 1, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fill();
+    ctx.fillStyle = 'lightblue';
+    ctx.fillRect(point.x, point.y, 2, 2);
 };
 
 /**
@@ -56,10 +53,7 @@ Z.Canvas.prototype.drawCrash = function(point) {
     var ctx = this.ctx;
 
     ctx.fillStyle = 'red';
-    ctx.beginPath();
-    ctx.arc(point.x, point.y, 3, 0, Math.PI * 2, true);
-    ctx.closePath();
-    ctx.fill();
+    ctx.fillRect(point.x, point.y, 4, 4);
 
     ctx.font = '30px arial';
     ctx.textAlign = 'center';
