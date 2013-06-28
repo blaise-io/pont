@@ -17,5 +17,18 @@ Z.util = {
             delta += Math.PI * 2;
         }
         return delta;
+    },
+
+    /**
+     * @param {Object} source
+     * @param {Object} target
+     */
+    extend: function (source, target) {
+        for (var k in target) {
+            if (target.hasOwnProperty(k)) {
+                source[k] = target[k];
+            }
+        }
     }
+
 };

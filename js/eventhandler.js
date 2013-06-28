@@ -66,5 +66,5 @@ Z.EventHandler.prototype.lastPointClose = function(point) {
 };
 
 Z.EventHandler.prototype.updatePath = function() {
-    Z.game.path = new Z.Path(this.draggedPoints);
+    Z.game.ferry.path = new Z.Path(this.draggedPoints);
 };

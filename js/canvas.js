@@ -12,11 +12,11 @@ Z.Canvas = function() {
         this.setVendorRequestAnimationFrame();
     }
 
-    this.err = false;
-    window.onerror = function() {
-        this.err = true;
-    }.bind(this);
+    if (/map/.test(location.search)) {
+        this.addMap();
+    }
 
+    this.stopOnError();
     this.paint();
 };
 
@@ -27,10 +27,10 @@ Z.Canvas.prototype.paint = function() {
 
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    Z.game.update();
+    Z.game.updateGame();
 
-    this.paintPath(Z.game.path);
-    this.paintEntities(Z.game.boats);
+    this.paintPath(Z.game.ferry.path);
+    this.paintEntities(Z.game.traffic.boats);
     this.paintEntity(Z.game.ferry);
 };
 
@@ -92,4 +92,18 @@ Z.Canvas.prototype.setVendorRequestAnimationFrame = function() {
         function(callback) {
             setTimeout(callback, 1000 / 60);
         };
+};
+
+
+Z.Canvas.prototype.stopOnError = function() {
+    this.err = false;
+    window.onerror = function() {
+        this.err = true;
+    }.bind(this);
+};
+
+Z.Canvas.prototype.addMap = function() {
+    var map = new Image();
+    map.src = 'img/map.png';
+    this.canvas.parentNode.insertBefore(map, this.canvas);
 };
