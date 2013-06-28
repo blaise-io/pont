@@ -15,7 +15,6 @@ Z.Path = function(points) {
  * @param {Array.<Z.Point>} points
  */
 Z.Path.prototype.drawCurve = function(points) {
-    points.unshift(points[0]);
     points.push(points[points.length - 1]);
     for (var i = 0, m = points.length; i + 3 < m; i++) {
         this.plotBezierQuad(points[i], points[i + 1], points[i + 2], points[i + 3]);

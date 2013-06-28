@@ -16,7 +16,7 @@ Z.EventHandler.prototype.addListeners = function() {
     this.boundEvents = {
         start: this.eventStart.bind(this),
         move : this.eventMove.bind(this),
-        stop : this.eventStop.bind(this)
+        err : this.eventStop.bind(this)
     };
 
     if ('ontouchmove' in document) {
@@ -25,11 +25,11 @@ Z.EventHandler.prototype.addListeners = function() {
         };
         el.ontouchstart = this.boundEvents.start;
         el.ontouchmove = this.boundEvents.move;
-        el.ontouchend = this.boundEvents.stop;
+        el.ontouchend = this.boundEvents.err;
     } else {
         el.onmousedown = this.boundEvents.start;
         el.onmousemove = this.boundEvents.move;
-        el.onmouseup = this.boundEvents.stop;
+        el.onmouseup = this.boundEvents.err;
     }
 };
 

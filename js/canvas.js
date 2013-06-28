@@ -12,11 +12,19 @@ Z.Canvas = function() {
         this.setVendorRequestAnimationFrame();
     }
 
+    this.err = false;
+    window.onerror = function() {
+        this.err = true;
+    }.bind(this);
+
     this.paint();
 };
 
 Z.Canvas.prototype.paint = function() {
-    window.requestAnimationFrame(this.paint.bind(this));
+    if (!this.err) {
+        window.requestAnimationFrame(this.paint.bind(this));
+    }
+
     this.ctx.clearRect(0, 0, this.width, this.height);
 
     Z.game.update();
