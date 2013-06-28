@@ -4,9 +4,9 @@
 var Z = {};
 
 Z.main = function() {
+    Z.game = new Z.Game();
     Z.canvas = new Z.Canvas();
     Z.eventHandler = new Z.EventHandler();
-
 };
 
 document.onreadystatechange = function() {

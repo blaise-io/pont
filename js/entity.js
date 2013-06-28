@@ -11,9 +11,10 @@
  */
 Z.Entity = function(src, point, angle, scale) {
     this.point = point;
-    this.angle = angle;
+    this.radian = angle;
     this.scale = scale || 1;
     this.ready = false;
+    this.progress = 0;
     this.img = this.preloadSrc(src);
 };
 

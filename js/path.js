@@ -4,10 +4,11 @@
 
 /**
  * @constructor
+ * @param {Array.<Z.Point>} points
  */
-Z.Path = function() {
+Z.Path = function(points) {
     this.points = [];
-    this.drawCurve(Array.prototype.slice.call(arguments));
+    this.drawCurve(points);
 };
 
 /**
@@ -21,6 +22,29 @@ Z.Path.prototype.drawCurve = function(points) {
     }
 };
 
+/**
+ * @returns {Z.Point|null}
+ */
+Z.Path.prototype.getTarget = function() {
+    return this.points[0] || null;
+};
+
+
+/**
+ */
+Z.Path.prototype.shiftTarget = function() {
+    if (this.points.length) {
+        this.points.shift();
+    }
+};
+
+
+/**
+ * @param {Z.Point} P0
+ * @param {Z.Point} P1
+ * @param {Z.Point} P2
+ * @returns {{c1: Z.Point, c2: Z.Point, l1: number, l2: number}}
+ */
 Z.Path.prototype.getControlPoints = function(P0, P1, P2) {
     var dx1, dy1, dx2, dy2, l1, l2, m1, m2, dxm, dym, k, cm, tx, ty, c1, c2;
 
@@ -32,8 +56,8 @@ Z.Path.prototype.getControlPoints = function(P0, P1, P2) {
     l1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
     l2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
 
-    m1 = {x: (P0.x + P1.x) / 2, y: (P0.y + P1.y) / 2};
-    m2 = {x: (P1.x + P2.x) / 2, y: (P1.y + P2.y) / 2};
+    m1 = new Z.Point((P0.x + P1.x) / 2, (P0.y + P1.y) / 2);
+    m2 = new Z.Point((P1.x + P2.x) / 2, (P1.y + P2.y) / 2);
 
     dxm = (m1.x - m2.x);
     dym = (m1.y - m2.y);
@@ -63,7 +87,7 @@ Z.Path.prototype.plotBezierQuad = function(P0, P1, P2, P3) {
     C1 = this.getControlPoints(P0, P1, P2);
     C2 = this.getControlPoints(P1, P2, P3);
 
-    ctr = Math.floor(( (C1.l1 || C1.l2) + (C2.l2 || C2.l1) ) / Z.STEP);
+    ctr = Math.floor(( (C1.l1 || C1.l2) + (C2.l2 || C2.l1) ) / Z.PATH_PLOT_STEP);
 
     pf = P1;
     p1 = P1;

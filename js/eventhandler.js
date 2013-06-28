@@ -36,6 +36,7 @@ Z.EventHandler.prototype.addListeners = function() {
 Z.EventHandler.prototype.eventStart = function(ev) {
     var point = new Z.Point(ev.pageX, ev.pageY);
     this.recording = true;
+    this.lastPoint = point;
     this.draggedPoints = [point, point];
 };
 
@@ -65,8 +66,5 @@ Z.EventHandler.prototype.lastPointClose = function(point) {
 };
 
 Z.EventHandler.prototype.updatePath = function() {
-    var PathFactory, path;
-    PathFactory = Z.Path.bind.apply(Z.Path, this.draggedPoints);
-    path = new PathFactory();
-    Z.canvas.path = path;
+    Z.game.path = new Z.Path(this.draggedPoints);
 };

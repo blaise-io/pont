@@ -12,10 +12,6 @@ Z.Canvas = function() {
         this.setVendorRequestAnimationFrame();
     }
 
-    this.boats = [];
-    this.path = new Z.Path();
-    this.ferry = new Z.Entity('image/ferry.png', new Z.Point(100, 100), 90, 0.3);
-
     this.paint();
 };
 
@@ -23,23 +19,11 @@ Z.Canvas.prototype.paint = function() {
     window.requestAnimationFrame(this.paint.bind(this));
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    var ferry = this.ferry;
-    var next = this.path.points[0];
-    if (next) {
-        // Smooth rotating like a real boat
-        ferry.angle += (ferry.point.angleTo(next) - ferry.angle) / 100;
-        ferry.point = ferry.point.stepTo(next, 1);
+    Z.game.update();
 
-        if (ferry.point.distanceTo(next) < 5) {
-            this.path.points.shift();
-        }
-    } else {
-        ferry.point = ferry.point.stepAngle(ferry.angle, 1);
-    }
-
-    this.paintPath(this.path);
-    this.paintEntities(this.boats);
-    this.paintEntity(this.ferry);
+    this.paintPath(Z.game.path);
+    this.paintEntities(Z.game.boats);
+    this.paintEntity(Z.game.ferry);
 };
 
 /**
@@ -57,8 +41,10 @@ Z.Canvas.prototype.drawSubPoint = function(point) {
  * @param {Z.Path} path
  */
 Z.Canvas.prototype.paintPath = function(path) {
-    for (var i = 0, m = path.points.length; i < m; i++) {
-        this.drawSubPoint(path.points[i]);
+    if (path) {
+        for (var i = 0, m = path.points.length; i < m; i++) {
+            this.drawSubPoint(path.points[i]);
+        }
     }
 };
 
@@ -83,14 +69,10 @@ Z.Canvas.prototype.paintEntity = function(entity) {
     if (entity.ready) {
         ctx.save();
         ctx.translate(entity.point.x, entity.point.y);
-        ctx.rotate(entity.angle * Math.PI / 180);
+        ctx.rotate(entity.radian);
         ctx.drawImage(entity.img, width / -2, height / -2, width, height);
         ctx.restore();
     }
-};
-
-Z.Canvas.prototype.clear = function() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
 Z.Canvas.prototype.setVendorRequestAnimationFrame = function() {
