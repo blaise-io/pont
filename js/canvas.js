@@ -40,22 +40,30 @@ Z.Canvas.prototype.paint = function() {
  * @param {Z.Point} point
  */
 Z.Canvas.prototype.drawPathPoint = function(point) {
-    this.ctx.fillStyle = 'black';
-    this.ctx.beginPath();
-    this.ctx.arc(point.x, point.y, 1, 0, Math.PI * 2, true);
-    this.ctx.closePath();
-    this.ctx.fill();
+    var ctx = this.ctx;
+
+    ctx.fillStyle = 'black';
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 1, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fill();
 };
 
 /**
  * @param {Z.Point} point
  */
-Z.Canvas.prototype.drawCrashPoint = function(point) {
-    this.ctx.fillStyle = 'red';
-    this.ctx.beginPath();
-    this.ctx.arc(point.x, point.y, 3, 0, Math.PI * 2, true);
-    this.ctx.closePath();
-    this.ctx.fill();
+Z.Canvas.prototype.drawCrash = function(point) {
+    var ctx = this.ctx;
+
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(point.x, point.y, 3, 0, Math.PI * 2, true);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.font = '30px arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('GAME OVER', this.width / 2, this.height / 2);
 };
 
 /**

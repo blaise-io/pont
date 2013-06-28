@@ -25,12 +25,13 @@ Z.Intersect.prototype.isIntersect = function(entityA, entityB) {
                 linesB[b][0],
                 linesB[b][1]
             );
-            if (result.onLine1 && result.onLine2) {
-                Z.canvas.err = true;
-                Z.canvas.drawCrashPoint(result.point);
+            if (result.lineA && result.lineB) {
+                return result;
             }
         }
     }
+
+    return null;
 };
 
 /**
@@ -70,15 +71,15 @@ Z.Intersect.prototype.getLines = function(entity) {
  * @param {Z.Point} a2
  * @param {Z.Point} b1
  * @param {Z.Point} b2
- * @returns {Object}
+ * @returns {{point:Z.Point, lineA:boolean, lineB:boolean}}
  */
 Z.Intersect.prototype.findLineIntersect = function(a1, a2, b1, b2) {
     var denominator, a, b, numerator1, numerator2, result;
 
     result = {
-        point  : null,
-        onLine1: false,
-        onLine2: false
+        point: null,
+        lineA: false,
+        lineB: false
     };
 
     denominator = ((b2.y - b1.y) * (a2.x - a1.x)) - ((b2.x - b1.x) * (a2.y - a1.y));
@@ -102,11 +103,11 @@ Z.Intersect.prototype.findLineIntersect = function(a1, a2, b1, b2) {
     );
 
     if (a > 0 && a < 1) {
-        result.onLine1 = true;
+        result.lineA = true;
     }
 
     if (b > 0 && b < 1) {
-        result.onLine2 = true;
+        result.lineB = true;
     }
 
     return result;

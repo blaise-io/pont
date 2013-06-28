@@ -32,10 +32,23 @@ Z.Game.prototype.updateCollisions = function(diff) {
 };
 
 Z.Game.prototype.detectCrash = function() {
+    var result;
+
     for (var i = 0, m = this.traffic.boats.length; i < m; i++) {
         var boat = this.traffic.boats[i];
         if (boat.ready && this.ferry.ready) {
-            Z.intersect.isIntersect(boat, this.ferry);
+            result = Z.intersect.isIntersect(boat, this.ferry);
+            if (result) {
+                break;
+            }
         }
+    }
+
+    if (result) {
+        Z.canvas.err = true;
+        Z.canvas.drawCrash(result.point);
+        document.body.onclick = function() {
+            location.reload(false);
+        };
     }
 };
