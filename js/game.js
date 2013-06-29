@@ -166,9 +166,9 @@ Z.Game.prototype.detectCrash = function() {
     if (result) {
         Z.canvas.err = true;
         Z.canvas.paintCrash(result.point);
+        Z.canvas.canvas.onclick = function() {
+            window.location.reload(false);
+        };
         this.bigMessage = 'IEDEREEN DOOD GAME OVER';
-        window.setTimeout(function() {
-                window.location.reload(false);
-        }, 4000);
     }
 };

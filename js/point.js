@@ -36,7 +36,7 @@ Z.Point.prototype.distanceTo = function(target) {
  */
 Z.Point.prototype.radianTo = function(target) {
     var dy = this.y - target.y, dx = this.x - target.x;
-    return Math.atan2(dy, dx);
+    return Math.atan2(dy, dx) % Math.PI;
 };
 
 /**

@@ -11,7 +11,7 @@
 Z.Ferry = function(point, radian) {
     Z.Boat.call(this, 'img/ferry.png', point, radian);
     this.agility = 20;
-    this.floatSpeed = 0.1;
+    this.floatSpeed = 0.15;
     this.maxSpeed = 2.2;
     this.velocity = 40;
     this.acceleration = 0.015;

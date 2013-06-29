@@ -16,7 +16,7 @@ Z.util = {
         } else if (delta < -Math.PI) {
             delta += Math.PI * 2;
         }
-        return delta;
+        return delta % Math.PI;
     },
 
     /**
