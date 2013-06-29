@@ -4,6 +4,7 @@
 
 /**
  * @constructor
+ * @inherits {Z.Boat}
  */
 Z.Ferry = function() {
     Z.Boat.call(this, 'img/ferry.png', new Z.Point(100, 100), 0, 0.2);
@@ -13,6 +14,7 @@ Z.Ferry = function() {
     this.velocity = 40;
     this.acceleration = 0.015;
     this.deceleration = 0.01;
+    this.outline = true;
 };
 
 Z.util.extend(
@@ -29,6 +31,7 @@ Z.Ferry.prototype.targetReached = function() {
 
 /**
  * @param {Z.Path} path
+ * @inherits {Z.Boat}
  * @constructor
  */
 Z.Barge = function(path) {

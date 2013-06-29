@@ -7,6 +7,24 @@
  */
 Z.Intersect = function() {};
 
+/**
+ * @param {Z.Entity} entity
+ * @param {Array.<Z.Path>} entities
+ * @returns {{point:Z.Point, lineA:boolean, lineB:boolean}}
+ */
+Z.Intersect.prototype.hasIntersect = function(entity, entities) {
+    var result;
+    for (var i = 0, m = entities.length; i < m; i++) {
+        if (entities[i].ready) {
+            result = this.isIntersect(entity, entities[i]);
+            if (result) {
+                return result;
+            }
+        }
+    }
+    return null;
+};
+
 /*
  * @param {Z.Entity} entityA
  * @param {Z.Entity} entityB
@@ -39,12 +57,16 @@ Z.Intersect.prototype.isIntersect = function(entityA, entityB) {
  * @returns {Array.<Array.<Z.Point>>}
  */
 Z.Intersect.prototype.getLines = function(entity) {
-    var lines, angle, point, width, height;
+    var lines, angle, point, width, height, sizeMultiplier = 1;
+
+    if (entity.outline) {
+        sizeMultiplier = 0.95;
+    }
 
     angle = entity.radian;
     point = entity.point;
-    width = (entity.width * entity.scale * 0.95) / 2; // Allow some scratching
-    height = (entity.height * entity.scale * 0.95) / 2;
+    width = (entity.width * entity.scale * sizeMultiplier) / 2; // Allow some scratching
+    height = (entity.height * entity.scale * sizeMultiplier) / 2;
 
     // T,R,B,L
     lines = [
@@ -112,4 +134,3 @@ Z.Intersect.prototype.findLineIntersect = function(a1, a2, b1, b2) {
 
     return result;
 };
-

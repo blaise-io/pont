@@ -15,6 +15,7 @@ Z.Entity = function(src, point, angle, scale) {
     this.scale = scale || 1;
     this.ready = false;
     this.progress = 0;
+    this.outline = false;
     this.img = this.preloadSrc(src);
 };
 

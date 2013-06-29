@@ -13,7 +13,7 @@ Z.Game = function() {
     this.shore = new Z.Shore();
     this.traffic = new Z.Traffic(1);
 
-    new Z.EventHandler(this.handlePath.bind(this));
+    new Z.EventHandler(this.updateFerryPath.bind(this));
 };
 
 Z.Game.prototype.updateGame = function() {
@@ -40,7 +40,7 @@ Z.Game.prototype.updateCollisions = function(diff) {
 /**
  * @param {Array.<Z.Point>} points
  */
-Z.Game.prototype.handlePath = function(points) {
+Z.Game.prototype.updateFerryPath = function(points) {
     var ferry = this.ferry, radianToPoint, delta;
     radianToPoint = ferry.point.radianTo(points[0]);
     delta = Z.util.getRadianDelta(ferry.radian, radianToPoint);
@@ -61,9 +61,9 @@ Z.Game.prototype.detectCrash = function() {
         return;
     }
 
-    result = this.detectCrashInEntities(this.traffic.boats);
+    result = Z.intersect.hasIntersect(this.ferry, this.traffic.boats);
     if (!result) {
-        result = this.detectCrashInEntities(this.shore.segments);
+        result = Z.intersect.hasIntersect(this.ferry, this.shore.segments);
     }
 
     if (result) {
@@ -73,17 +73,4 @@ Z.Game.prototype.detectCrash = function() {
             location.reload(false);
         };
     }
-};
-
-Z.Game.prototype.detectCrashInEntities = function(entities) {
-    var result;
-    for (var i = 0, m = entities.length; i < m; i++) {
-        if (entities[i].ready) {
-            result = Z.intersect.isIntersect(entities[i], this.ferry);
-            if (result) {
-                return result;
-            }
-        }
-    }
-    return null;
 };

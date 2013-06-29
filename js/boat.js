@@ -4,6 +4,7 @@
 
 /**
  * @constructor
+ * @extends {Z.Entity}
  */
 Z.Boat = function() {
     Z.Entity.apply(this, arguments);
