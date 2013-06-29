@@ -62,7 +62,7 @@ Z.CanalBoat = function(path) {
     Z.Boat.call(this, 'img/canalboat.png', path.points[0], 0);
     this.path = path;
     this.agility = 30;
-    this.maxSpeed = 0.5;
+    this.maxSpeed = 1;
     this.speed = this.maxSpeed;
     this.velocity = 40;
     this.sweetspotTolerance = 40;
@@ -84,7 +84,7 @@ Z.SpeedBoat = function(path) {
     Z.Boat.call(this, 'img/speedboat.png', path.points[0], 0);
     this.path = path;
     this.agility = 30;
-    this.maxSpeed = 4;
+    this.maxSpeed = 3;
     this.speed = this.maxSpeed;
     this.velocity = 40;
     this.sweetspotTolerance = 40;

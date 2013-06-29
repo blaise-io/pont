@@ -38,7 +38,6 @@ Z.Boat.prototype.updateBoat = function(diff) {
 
     if (this.progress > this.updateInterval) {
         if (target) {
-
             this.moveToTarget(target);
         } else {
             this.targetReached();
