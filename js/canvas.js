@@ -165,5 +165,8 @@ Z.Canvas.prototype.stopOnError = function() {
 Z.Canvas.prototype.addMap = function() {
     var map = new Image();
     map.src = 'img/map.png';
+    map.ontouchstart = function(e) {
+        e.preventDefault();
+    };
     this.canvas.parentNode.insertBefore(map, this.canvas);
 };
