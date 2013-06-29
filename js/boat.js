@@ -61,7 +61,7 @@ Z.Boat.prototype.moveToTarget = function(target) {
 
     radian = this.point.radianTo(target);
     deltaTurning = Math.abs(Z.util.getRadianDelta(radian, this.radian));
-    deceleration = (deltaTurning * this.deceleration) * 2;
+    deceleration = (deltaTurning * this.deceleration) * 4;
 
     this.speed = Math.max(
         Math.min(this.speed + this.acceleration, this.maxSpeed) - deceleration,
