@@ -66,7 +66,7 @@ Z.Boat.prototype.moveToTarget = function(target) {
     deceleration = (deltaTurning * this.deceleration) * 2;
 
     if (this.breaking) {
-        this.speed -= 0.1;
+        this.speed -= Math.sqrt(this.speed) / 10;
     }
 
     this.speed = Math.max(
