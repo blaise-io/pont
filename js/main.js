@@ -4,9 +4,8 @@
 var Z = {};
 
 Z.main = function() {
-    Z.game = new Z.Game();
+    Z.intro = new Z.Intro();
     Z.canvas = new Z.Canvas();
-    Z.intersect = new Z.Intersect();
 };
 
 document.onreadystatechange = function() {

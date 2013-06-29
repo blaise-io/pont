@@ -5,9 +5,8 @@
 /**
  * @constructor
  */
-Z.EventHandler = function(callback) {
+Z.EventHandler = function() {
     this.recording = false;
-    this.callback = callback;
     this.addListeners();
 };
 
@@ -67,7 +66,7 @@ Z.EventHandler.prototype.lastPointClose = function(point) {
 };
 
 Z.EventHandler.prototype.updatePath = function() {
-    if (this.callback) {
-        this.callback(this.draggedPoints);
+    if (this.onUpdate) {
+        this.onUpdate(this.draggedPoints);
     }
 };

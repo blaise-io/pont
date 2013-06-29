@@ -26,15 +26,16 @@ Z.Canvas.prototype.paint = function() {
     }
 
     window.requestAnimationFrame(this.paint.bind(this));
-
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    Z.game.updateGame();
-
-    this.paintPath(Z.game.ferry.path);
-    this.paintEntities(Z.game.traffic.boats);
-    // this.paintEntities(Z.game.shore.segments);
-    this.paintEntity(Z.game.ferry);
+    if (Z.game) {
+        Z.game.updateGame();
+        this.paintPath(Z.game.ferry.path);
+        this.paintEntities(Z.game.traffic.boats);
+        this.paintEntity(Z.game.ferry);
+    } else {
+        this.paintEntity(Z.intro.entity);
+    }
 };
 
 /**

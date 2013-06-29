@@ -13,7 +13,9 @@ Z.Game = function() {
     this.shore = new Z.Shore();
     this.traffic = new Z.Traffic(1);
 
-    new Z.EventHandler(this.updateFerryPath.bind(this));
+    this.intersectHandler = new Z.Intersect();
+    this.eventHandler = new Z.EventHandler();
+    this.eventHandler.onUpdate = this.updateFerryPath.bind(this);
 };
 
 Z.Game.prototype.updateGame = function() {
@@ -61,9 +63,9 @@ Z.Game.prototype.detectCrash = function() {
         return;
     }
 
-    result = Z.intersect.hasIntersect(this.ferry, this.traffic.boats);
+    result = this.intersectHandler.hasIntersect(this.ferry, this.traffic.boats);
     if (!result) {
-        result = Z.intersect.hasIntersect(this.ferry, this.shore.segments);
+        result = this.intersectHandler.hasIntersect(this.ferry, this.shore.segments);
     }
 
     if (result) {
