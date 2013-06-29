@@ -7,7 +7,7 @@
  */
 Z.Intro = function() {
     this.entity = new Z.Entity('img/intro.png', new Z.Point(250, 250));
-    document.body.onclick = document.body.ontouchstart = this.gameStart.bind(this);
+    this.gameStart.bind(this);
 };
 
 Z.Intro.prototype.gameStart = function() {
