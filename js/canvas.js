@@ -33,6 +33,7 @@ Z.Canvas.prototype.paint = function() {
 
     this.paintPath(Z.game.ferry.path);
     this.paintEntities(Z.game.traffic.boats);
+    // this.paintEntities(Z.game.shore.segments);
     this.paintEntity(Z.game.ferry);
 };
 
@@ -42,7 +43,7 @@ Z.Canvas.prototype.paint = function() {
 Z.Canvas.prototype.drawPathPoint = function(point) {
     var ctx = this.ctx;
 
-    ctx.fillStyle = 'lightblue';
+    ctx.fillStyle = 'white';
     ctx.fillRect(point.x, point.y, 2, 2);
 };
 
