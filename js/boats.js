@@ -51,3 +51,47 @@ Z.util.extend(
     /** @lends {Z.Ferry.prototype}*/
     Z.Boat.prototype
 );
+
+
+/**
+ * @param {Z.Path} path
+ * @inherits {Z.Boat}
+ * @constructor
+ */
+Z.CanalBoat = function(path) {
+    Z.Boat.call(this, 'img/canalboat.png', path.points[0], 0);
+    this.path = path;
+    this.agility = 30;
+    this.maxSpeed = 0.5;
+    this.speed = this.maxSpeed;
+    this.velocity = 40;
+    this.sweetspotTolerance = 40;
+};
+
+Z.util.extend(
+    Z.CanalBoat.prototype,
+    /** @lends {Z.Ferry.prototype}*/
+    Z.Boat.prototype
+);
+
+
+/**
+ * @param {Z.Path} path
+ * @inherits {Z.Boat}
+ * @constructor
+ */
+Z.SpeedBoat = function(path) {
+    Z.Boat.call(this, 'img/speedboat.png', path.points[0], 0);
+    this.path = path;
+    this.agility = 30;
+    this.maxSpeed = 0.5;
+    this.speed = this.maxSpeed;
+    this.velocity = 40;
+    this.sweetspotTolerance = 40;
+};
+
+Z.util.extend(
+    Z.SpeedBoat.prototype,
+    /** @lends {Z.Ferry.prototype}*/
+    Z.Boat.prototype
+);
