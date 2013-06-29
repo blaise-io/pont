@@ -15,7 +15,7 @@ Z.Intersect = function() {};
 Z.Intersect.prototype.hasIntersect = function(entity, entities) {
     var result;
     for (var i = 0, m = entities.length; i < m; i++) {
-        if (entities[i].ready) {
+        if (entities[i] && entities[i].ready) {
             result = this.isIntersect(entity, entities[i]);
             if (result) {
                 return result;

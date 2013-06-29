@@ -24,28 +24,28 @@ Z.Traffic.prototype.getRandomBoat = function() {
 
 Z.Traffic.prototype.getBarge = function() {
     return new Z.Barge(new Z.Path([
-        new Z.Point(50, -100 + Math.random() * 20),
-        new Z.Point(50, -100 + Math.random() * 20),
-        new Z.Point(100, 225 + Math.random() * 50),
-        new Z.Point(600, 400 + Math.random() * 100)
-    ]));
-};
-
-Z.Traffic.prototype.getSpeedBoat = function() {
-    return new Z.SpeedBoat(new Z.Path([
-        new Z.Point(30, -100 + Math.random() * 20),
-        new Z.Point(30, -100 + Math.random() * 20),
-        new Z.Point(70, 240 + Math.random() * 20),
-        new Z.Point(600, 450 + Math.random() * 50)
+        new Z.Point(-50, -50),
+        new Z.Point(-50, -50),
+        new Z.Point(100, 200),
+        new Z.Point(600, 400)
     ]));
 };
 
 Z.Traffic.prototype.getCanalBoat = function() {
     return new Z.CanalBoat(new Z.Path([
-        new Z.Point(100, -100 + Math.random() * 20),
-        new Z.Point(100, -100 + Math.random() * 20),
-        new Z.Point(150, 125 + Math.random() * 50),
-        new Z.Point(600, 400 + Math.random() * 100)
+        new Z.Point(-70, -50),
+        new Z.Point(-70, -50),
+        new Z.Point(100, 300),
+        new Z.Point(600, 500)
+    ]));
+};
+
+Z.Traffic.prototype.getSpeedBoat = function() {
+    return new Z.SpeedBoat(new Z.Path([
+        new Z.Point(-100, -50),
+        new Z.Point(-100, -50),
+        new Z.Point(100, 400),
+        new Z.Point(600, 700)
     ]));
 };
 
