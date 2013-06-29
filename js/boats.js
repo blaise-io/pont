@@ -15,7 +15,7 @@ Z.Ferry = function(point, radian) {
     this.maxSpeed = 2.5;
     this.velocity = 40;
     this.acceleration = 0.015;
-    this.deceleration = 0.02;
+    this.deceleration = 0.015;
     this.outline = true;
 };
 
