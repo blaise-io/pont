@@ -26,4 +26,3 @@ Z.Audio.prototype.playCrash = function() {
     this.files.music.pause();
     this.files.crash.play();
 };
-
