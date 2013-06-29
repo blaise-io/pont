@@ -131,10 +131,10 @@ Z.Canvas.prototype.paintEntities = function(entities) {
 Z.Canvas.prototype.paintEntity = function(entity) {
     var width, height, ctx = this.ctx;
 
-    width = entity.width * entity.scale;
-    height = entity.height * entity.scale;
+    if (entity && entity.ready) {
+        width = entity.width * entity.scale;
+        height = entity.height * entity.scale;
 
-    if (entity.ready) {
         ctx.save();
         ctx.translate(entity.point.x, entity.point.y);
         ctx.rotate(entity.radian);
