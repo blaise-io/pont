@@ -23,7 +23,7 @@ Z.Boat = function() {
 
     this.progress = 0;
     this.updateInterval = 30;
-    this.sweetspotTolerance = 20;
+    this.sweetspotTolerance = 25;
 };
 
 Z.util.extend(

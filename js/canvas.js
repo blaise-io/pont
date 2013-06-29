@@ -33,6 +33,9 @@ Z.Canvas.prototype.paint = function() {
         this.paintPath(Z.game.ferry.path);
         this.paintEntities(Z.game.traffic.boats);
         this.paintEntity(Z.game.ferry);
+        this.paintScore(Z.game.score);
+        this.paintDirection(Z.game.direction);
+        this.paintBigMessage(Z.game.bigMessage);
     } else {
         this.paintEntity(Z.intro.entity);
     }
@@ -51,16 +54,53 @@ Z.Canvas.prototype.drawPathPoint = function(point) {
 /**
  * @param {Z.Point} point
  */
-Z.Canvas.prototype.drawCrash = function(point) {
+Z.Canvas.prototype.paintCrash = function(point) {
     var ctx = this.ctx;
 
     ctx.fillStyle = 'red';
     ctx.fillRect(point.x, point.y, 4, 4);
+};
 
+/**
+ * @param {number} score
+ */
+Z.Canvas.prototype.paintScore = function(score) {
+    var ctx = this.ctx;
+    ctx.fillStyle = 'black';
+    ctx.font = '20px arial';
+    ctx.textAlign = 'right';
+    ctx.fillText('Score: ' + score, this.width - 15, 30);
+    ctx.fillStyle = 'white';
+    ctx.fillText('Score: ' + score, this.width - 15, 29);
+};
+
+/**
+ * @param {string} direction
+ */
+Z.Canvas.prototype.paintDirection = function(direction) {
+    var ctx = this.ctx;
+    ctx.fillStyle = 'black';
+    ctx.font = '20px arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(direction, 15, 30);
+    ctx.fillStyle = 'white';
+    ctx.fillText(direction, 15, 29);
+};
+
+
+/**
+ * @param {string} bigMessage
+ */
+Z.Canvas.prototype.paintBigMessage = function(bigMessage) {
+    var ctx = this.ctx;
+    ctx.fillStyle = 'black';
     ctx.font = '30px arial';
     ctx.textAlign = 'center';
-    ctx.fillText('GAME OVER', this.width / 2, this.height / 2);
+    ctx.fillText(bigMessage, this.width / 2, this.height / 2);
+    ctx.fillStyle = 'white';
+    ctx.fillText(bigMessage, this.width / 2, (this.height / 2) - 1);
 };
+
 
 /**
  * @param {Z.Path} path

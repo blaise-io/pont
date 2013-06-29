@@ -4,16 +4,18 @@
 
 /**
  * @constructor
+ * @param {Point} point
+ * @param {number} radian
  * @inherits {Z.Boat}
  */
-Z.Ferry = function() {
-    Z.Boat.call(this, 'img/ferry.png', new Z.Point(100, 100), 0, 1);
+Z.Ferry = function(point, radian) {
+    Z.Boat.call(this, 'img/ferry.png', point, radian);
     this.agility = 20;
     this.floatSpeed = 0.1;
     this.maxSpeed = 2.5;
     this.velocity = 40;
     this.acceleration = 0.015;
-    this.deceleration = 0.01;
+    this.deceleration = 0.02;
     this.outline = true;
 };
 
@@ -35,7 +37,7 @@ Z.Ferry.prototype.targetReached = function() {
  * @constructor
  */
 Z.Barge = function(path) {
-    Z.Boat.call(this, 'img/barge.png', path.points[0], 0, 1);
+    Z.Boat.call(this, 'img/barge.png', path.points[0], 0);
     this.path = path;
     this.agility = 30;
     this.maxSpeed = 0.5;

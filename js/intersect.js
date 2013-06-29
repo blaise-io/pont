@@ -60,7 +60,7 @@ Z.Intersect.prototype.getLines = function(entity) {
     var lines, angle, point, width, height, sizeMultiplier = 1;
 
     if (entity.outline) {
-        sizeMultiplier = 0.95;
+        sizeMultiplier = 0.9;
     }
 
     angle = entity.radian;
