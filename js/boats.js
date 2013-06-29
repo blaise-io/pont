@@ -39,7 +39,7 @@ Z.Ferry.prototype.targetReached = function() {
 Z.Barge = function(path) {
     Z.Boat.call(this, 'img/barge.png', path.points[0], 0);
     this.path = path;
-    this.agility = 30;
+    this.agility = 20;
     this.maxSpeed = 0.5;
     this.speed = this.maxSpeed;
     this.velocity = 40;
@@ -64,7 +64,7 @@ Z.CanalBoat = function(path) {
     this.agility = 30;
     this.maxSpeed = 1;
     this.speed = this.maxSpeed;
-    this.velocity = 40;
+    this.velocity = 50;
     this.sweetspotTolerance = 40;
 };
 
@@ -83,11 +83,11 @@ Z.util.extend(
 Z.SpeedBoat = function(path) {
     Z.Boat.call(this, 'img/speedboat.png', path.points[0], 0);
     this.path = path;
-    this.agility = 30;
+    this.agility = 40;
     this.maxSpeed = 3;
     this.speed = this.maxSpeed;
-    this.velocity = 40;
-    this.sweetspotTolerance = 40;
+    this.velocity = 60;
+    this.sweetspotTolerance = 70;
 };
 
 Z.util.extend(
