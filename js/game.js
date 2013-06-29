@@ -169,7 +169,7 @@ Z.Game.prototype.detectCrash = function() {
         this.bigMessage = 'IEDEREEN DOOD GAME OVER';
         window.setTimeout(function() {
             document.body.onclick = function() {
-                location.reload(false);
+                window.location.reload(false);
             };
         }, 2000);
 
