@@ -7,7 +7,7 @@
  * @inherits {Z.Boat}
  */
 Z.Ferry = function() {
-    Z.Boat.call(this, 'img/ferry.png', new Z.Point(100, 100), 0, 0.2);
+    Z.Boat.call(this, 'img/ferry.png', new Z.Point(100, 100), 0, 1);
     this.agility = 20;
     this.floatSpeed = 0.1;
     this.maxSpeed = 2.5;
@@ -35,7 +35,7 @@ Z.Ferry.prototype.targetReached = function() {
  * @constructor
  */
 Z.Barge = function(path) {
-    Z.Boat.call(this, 'img/barge.png', path.points[0], 0, 0.2);
+    Z.Boat.call(this, 'img/barge.png', path.points[0], 0, 1);
     this.path = path;
     this.agility = 30;
     this.maxSpeed = 0.5;
