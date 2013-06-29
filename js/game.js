@@ -123,6 +123,7 @@ Z.Game.prototype.setFerryAtTarget = function() {
 
 Z.Game.prototype.switchTarget = function() {
     this.score++;
+    Z.audio.playComplete();
     this.ferry.path = null;
     this.setFerryAtTarget();
     this.gotoCS = !this.gotoCS;
@@ -165,6 +166,7 @@ Z.Game.prototype.detectCrash = function() {
 
     if (result) {
         Z.canvas.err = true;
+        Z.audio.playCrash();
         Z.canvas.paintCrash(result.point);
         Z.canvas.canvas.onclick = function() {
             window.location.reload(false);
