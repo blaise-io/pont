@@ -21,8 +21,10 @@ Z.Game = function() {
     this.score = 0;
 
     this.gotoCS = true;
-    this.updateDirection();
+    this.updateInstruction();
 
+    this.docks = this.getDockEntities();
+    this.target = this.getTargetEntity();
     this.ferry = new Z.Ferry(this.pointBSM, this.radianBSM);
     this.shore = new Z.Shore();
     this.traffic = new Z.Traffic(1);
@@ -71,11 +73,29 @@ Z.Game.prototype.getTarget = function() {
     }
 };
 
-Z.Game.prototype.updateDirection = function() {
+/**
+ * @returns {Array.<Z.Entity>}
+ */
+Z.Game.prototype.getDockEntities = function() {
+    return [
+        new Z.Entity('img/dock.png', this.pointBSM, this.radianBSM),
+        new Z.Entity('img/dock.png', this.pointCS, this.radianCS)
+    ];
+};
+
+/**
+ * @returns {Z.Entity}
+ */
+Z.Game.prototype.getTargetEntity = function() {
+    var target = this.getTarget();
+    return new Z.Entity('img/target.png', target.point, target.radian);
+};
+
+Z.Game.prototype.updateInstruction = function() {
     if (this.gotoCS) {
-        this.direction = 'Vaar naar Centraal Station';
+        this.instruction = 'Vaar naar Centraal Station';
     } else {
-        this.direction = 'Vaar naar Buiksloterweg';
+        this.instruction = 'Vaar naar Buiksloterweg';
     }
 };
 
@@ -104,7 +124,8 @@ Z.Game.prototype.setFerryAtTarget = function() {
 Z.Game.prototype.switchTarget = function() {
     this.score++;
     this.gotoCS = !this.gotoCS;
-    this.updateDirection();
+    this.target = this.getTargetEntity();
+    this.updateInstruction();
 };
 
 /**

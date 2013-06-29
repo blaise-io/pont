@@ -30,11 +30,13 @@ Z.Canvas.prototype.paint = function() {
 
     if (Z.game) {
         Z.game.updateGame();
+        this.paintEntity(Z.game.target);
+        this.paintEntities(Z.game.docks);
         this.paintPath(Z.game.ferry.path);
         this.paintEntities(Z.game.traffic.boats);
         this.paintEntity(Z.game.ferry);
         this.paintScore(Z.game.score);
-        this.paintDirection(Z.game.direction);
+        this.paintInstruction(Z.game.instruction);
         this.paintBigMessage(Z.game.bigMessage);
     } else {
         this.paintEntity(Z.intro.entity);
@@ -77,7 +79,7 @@ Z.Canvas.prototype.paintScore = function(score) {
 /**
  * @param {string} direction
  */
-Z.Canvas.prototype.paintDirection = function(direction) {
+Z.Canvas.prototype.paintInstruction = function(direction) {
     var ctx = this.ctx;
     ctx.fillStyle = 'black';
     ctx.font = '20px arial';
