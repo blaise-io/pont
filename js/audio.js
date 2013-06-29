@@ -15,14 +15,20 @@ Z.Audio = function() {
 };
 
 Z.Audio.prototype.playBackgroundMusic = function() {
-    this.files.music.play();
+    try {
+        this.files.music.play();
+    } catch(err){}
 };
 
 Z.Audio.prototype.playComplete = function() {
-    this.files.complete.play();
+    try {
+        this.files.complete.play();
+    } catch(err){}
 };
 
 Z.Audio.prototype.playCrash = function() {
-    this.files.music.pause();
-    this.files.crash.play();
+    try {
+        this.files.music.pause();
+        this.files.crash.play();
+    } catch(err){}
 };
