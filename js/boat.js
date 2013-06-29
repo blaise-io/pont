@@ -12,8 +12,6 @@ Z.Boat = function() {
     this.path = null;
     this.speed = 0;
 
-    this.breaking = false;
-
     this.agility = 20;
     this.floatSpeed = 0.1;
     this.maxSpeed = 2.5;
@@ -64,10 +62,6 @@ Z.Boat.prototype.moveToTarget = function(target) {
     radian = this.point.radianTo(target);
     deltaTurning = Math.abs(Z.util.getRadianDelta(radian, this.radian));
     deceleration = (deltaTurning * this.deceleration) * 2;
-
-    if (this.breaking) {
-        this.speed -= Math.sqrt(this.speed) / 10;
-    }
 
     this.speed = Math.max(
         Math.min(this.speed + this.acceleration, this.maxSpeed) - deceleration,

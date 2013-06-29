@@ -11,12 +11,13 @@ Z.Game = function() {
     this.detectCrashInterval = 100;
 
     this.bigMessage = '';
+    this.ignoreInput = false;
 
-    this.pointBSM = new Z.Point(370, 150);
-    this.radianBSM = -0.5;
+    this.pointBSM = new Z.Point(375, 152);
+    this.radianBSM = -0.61;
 
-    this.pointCS = new Z.Point(66, 354);
-    this.radianCS = 2.4;
+    this.pointCS = new Z.Point(67, 352);
+    this.radianCS = 2.25;
 
     this.score = 0;
 
@@ -101,9 +102,8 @@ Z.Game.prototype.updateInstruction = function() {
 
 Z.Game.prototype.detectArrival = function() {
     var ferryAtTarget, ferry = this.ferry;
-    ferryAtTarget = ferry.point.distanceTo(this.getTarget().point) < 10;
+    ferryAtTarget = ferry.point.distanceTo(this.getTarget().point) < 7;
     if (ferryAtTarget && ferry.speed < ferry.floatSpeed * 10) {
-        this.setFerryAtTarget();
         this.switchTarget();
         this.bigMessage = 'VET GOED! Vaar nu weer terug.';
         window.setTimeout(function() {
@@ -123,23 +123,29 @@ Z.Game.prototype.setFerryAtTarget = function() {
 
 Z.Game.prototype.switchTarget = function() {
     this.score++;
+    this.ferry.path = null;
+    this.setFerryAtTarget();
     this.gotoCS = !this.gotoCS;
     this.target = this.getTargetEntity();
     this.updateInstruction();
+    this.ignoreInput = true;
+    window.setTimeout(function() {
+        this.ignoreInput = false;
+    }.bind(this), 2000);
 };
 
 /**
  * @param {Array.<Z.Point>} points
  */
 Z.Game.prototype.updateFerryPath = function(points) {
+    if (this.ignoreInput) {
+        return;
+    }
     var ferry = this.ferry, radianToPoint, delta;
     radianToPoint = ferry.point.radianTo(points[0]);
     delta = Z.util.getRadianDelta(ferry.radian, radianToPoint);
     if (points.length <= 3 && Math.abs(delta) > Math.PI * 0.9) {
-        ferry.breaking = true;
-        window.setTimeout(function() {
-            ferry.breaking = false;
-        }.bind(this), 200);
+        ferry.speed = Math.max(ferry.speed - 0.3, ferry.floatSpeed);
     } else {
         ferry.path = new Z.Path(points);
     }

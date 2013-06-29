@@ -38,6 +38,7 @@ Z.Canvas.prototype.paint = function() {
         this.paintScore(Z.game.score);
         this.paintInstruction(Z.game.instruction);
         this.paintBigMessage(Z.game.bigMessage);
+        // this.paintEntities(Z.game.shore.segments);
     } else {
         this.paintEntity(Z.intro.entity);
     }
