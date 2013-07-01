@@ -1,11 +1,12 @@
 # Pont
 
  * Translation from Dutch: ‘Ferry’
- * [Code by Blaise Kal](https://github.com/blaise-io), [Graphics and Music by David Stotijn](https://github.com/dstotijn)
+ * [Code by Blaise Kal](https://github.com/blaise-io)
+ * [Graphics and Music by David Stotijn](https://github.com/dstotijn)
  * This is our entry for the [Zo niet, dan toch - hackathon](http://zonietdanto.ch/)  
  * Hackathon theme: Virtual art in Amsterdam Noord
 
-## [Play here](http://blaise-io.github.io/zonietdantoch/?map) (warning: has sound)
+## [Play here](http://blaise-io.github.io/pont/?map) (warning: has sound)
 
 Instructions:
 
