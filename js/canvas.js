@@ -35,9 +35,11 @@ Z.Canvas.prototype.paint = function() {
         this.paintPath(Z.game.ferry.path);
         this.paintEntities(Z.game.traffic.boats);
         this.paintEntity(Z.game.ferry);
-        this.paintScore(Z.game.score);
-        this.paintInstruction(Z.game.instruction);
-        this.paintBigMessage(Z.game.bigMessage);
+        this.paintTexts(Z.game.texts);
+//        this.paintScore(Z.game.score);
+//        this.paintInstruction(Z.game.instruction);
+//        this.paintBigMessage(Z.game.bigMessage);
+
         // this.paintEntities(Z.game.shore.segments);
     } else if (Z.intro && Z.intro.text) {
         this.paintTexts(Z.intro.text);

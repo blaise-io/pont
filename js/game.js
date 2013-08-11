@@ -10,7 +10,6 @@ Z.Game = function() {
     this.detectCrashProgress = 0;
     this.detectCrashInterval = 100;
 
-    this.bigMessage = '';
     this.ignoreInput = false;
 
     this.pointBSM = new Z.Point(375, 152);
@@ -23,6 +22,8 @@ Z.Game = function() {
     this.level = 1;
 
     this.gotoCS = true;
+
+    this.setupTexts();
     this.updateInstruction();
 
     this.docks = this.getDockEntities();
@@ -34,6 +35,21 @@ Z.Game = function() {
     this.intersectHandler = new Z.Intersect();
     this.eventHandler = new Z.EventHandler();
     this.eventHandler.onUpdate = this.updateFerryPath.bind(this);
+};
+
+Z.Game.prototype.setupTexts = function() {
+    this.textInstruct = new Z.Text('', 'left', 10, 20);
+    this.textLevel = new Z.Text(Z.STR.UI_LEVEL + this.level, 'right', 10, 20);
+    this.textScore = new Z.Text(Z.STR.UI_SCORE + this.score, 'right', 120, 20);
+    this.textHeader = new Z.HeaderText('', 'center');
+    this.textMessage = new Z.MiddleText('', 'center');
+    this.texts = [
+        this.textInstruct,
+        this.textLevel,
+        this.textScore,
+        this.textHeader,
+        this.textMessage
+    ];
 };
 
 Z.Game.prototype.updateGame = function() {
@@ -95,9 +111,9 @@ Z.Game.prototype.getTargetEntity = function() {
 
 Z.Game.prototype.updateInstruction = function() {
     if (this.gotoCS) {
-        this.instruction = 'Vaar naar Centraal Station';
+        this.textInstruct.str = Z.STR.SAIL_TO_CS;
     } else {
-        this.instruction = 'Vaar naar Buiksloterweg';
+        this.textInstruct.str = Z.STR.SAIL_TO_BSW;
     }
 };
 
@@ -106,9 +122,10 @@ Z.Game.prototype.detectArrival = function() {
     ferryAtTarget = ferry.point.distanceTo(this.getTarget().point) < 7;
     if (ferryAtTarget && ferry.speed < ferry.floatSpeed * 10) {
         this.switchTarget();
-        this.bigMessage = 'VET GOED! Vaar nu weer terug.';
+        this.textHeader.str = Z.STR.GOOD_JOB;
+        this.textMessage.str = Z.STR.SAIL_OPPOSITE;
         window.setTimeout(function() {
-            this.bigMessage = '';
+            this.textHeader.str = this.textMessage.str = '';
         }.bind(this), 4000);
     }
 };
@@ -124,6 +141,7 @@ Z.Game.prototype.setFerryAtTarget = function() {
 
 Z.Game.prototype.switchTarget = function() {
     this.score++;
+    this.textScore.str = 'Score: ' + this.score;
     Z.audio.playComplete();
     this.ferry.path = null;
     this.setFerryAtTarget();
@@ -161,17 +179,27 @@ Z.Game.prototype.detectCrash = function() {
     }
 
     result = this.intersectHandler.hasIntersect(this.ferry, this.traffic.boats);
+    if (result) {
+        this.textMessage.str = Z.STR.TIP_CRASH_BOAT;
+    }
     if (!result) {
         result = this.intersectHandler.hasIntersect(this.ferry, this.shore.segments);
+        if (result) {
+            this.textMessage.str = Z.STR.TIP_BREAK_FERRY;
+        }
     }
 
     if (result) {
         Z.canvas.err = true;
         Z.audio.playCrash();
         Z.canvas.paintCrash(result.point);
-        Z.canvas.canvas.onclick = function() {
-            window.location.reload(false);
-        };
-        this.bigMessage = 'IEDEREEN DOOD GAME OVER';
+
+        this.textHeader.str = Z.STR.GAME_OVER;
+
+        window.setTimeout(function() {
+            Z.canvas.canvas.onclick = function() {
+                window.location.reload(false);
+            };
+        }.bind(this), 2000);
     }
 };
