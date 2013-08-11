@@ -24,6 +24,7 @@ Z.Intro.prototype.detectLanguage = function(ev) {
             Z.STR = Z.LANG.EN;
         }
         this.showIntro();
+        Z.audio.music.play();
     }
 };
 
