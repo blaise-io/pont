@@ -141,17 +141,26 @@ Z.Game.prototype.setFerryAtTarget = function() {
 
 Z.Game.prototype.switchTarget = function() {
     this.score++;
-    this.textScore.str = 'Score: ' + this.score;
+    this.textScore.str = Z.STR.UI_SCORE + this.score;
     Z.audio.playComplete();
     this.ferry.path = null;
     this.setFerryAtTarget();
     this.gotoCS = !this.gotoCS;
     this.target = this.getTargetEntity();
     this.updateInstruction();
+    this.detectLevelUp();
     this.ignoreInput = true;
     window.setTimeout(function() {
         this.ignoreInput = false;
     }.bind(this), 2000);
+};
+
+Z.Game.prototype.detectLevelUp = function() {
+    if (0 === this.score % 1) {
+        this.traffic = new Z.Traffic(++this.level);
+        this.textScore.str = Z.STR.UI_LEVEL + this.level;
+        this.textHeader.str = Z.STR.LEVEL_UP;
+    }
 };
 
 /**
@@ -195,6 +204,7 @@ Z.Game.prototype.detectCrash = function() {
         Z.canvas.paintCrash(result.point);
 
         this.textHeader.str = Z.STR.GAME_OVER;
+        this.ignoreInput = true;
 
         window.setTimeout(function() {
             Z.canvas.canvas.onclick = function() {
