@@ -33,15 +33,22 @@ Z.EventHandler.prototype.addListeners = function() {
     }
 };
 
+Z.EventHandler.prototype.getEventPoint = function(ev) {
+    return new Z.Point(
+        ev.pageX || ev.touches[0].pageX,
+        ev.pageY || ev.touches[0].pageY
+    );
+};
+
 Z.EventHandler.prototype.eventStart = function(ev) {
-    var point = new Z.Point(ev.pageX, ev.pageY);
+    var point = this.getEventPoint(ev);
     this.recording = true;
     this.lastPoint = point;
     this.draggedPoints = [point, point];
 };
 
 Z.EventHandler.prototype.eventMove = function(ev) {
-    var point = new Z.Point(ev.pageX, ev.pageY);
+    var point = this.getEventPoint(ev);
     this.lastPoint = point;
     if (this.recording) {
         if (!this.lastPointClose(point)) {

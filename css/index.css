@@ -6,10 +6,12 @@
     user-select: none;
 }
 
-body, canvas {
+body {
     position: relative;
 }
 
-img {
+canvas, img {
+    top: 0;
+    left: 0;
     position: absolute;
 }
