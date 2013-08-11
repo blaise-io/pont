@@ -15,3 +15,7 @@ canvas, img {
     left: 0;
     position: absolute;
 }
+
+canvas {
+    cursor: crosshair;
+}

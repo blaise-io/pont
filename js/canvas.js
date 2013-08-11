@@ -39,8 +39,8 @@ Z.Canvas.prototype.paint = function() {
         this.paintInstruction(Z.game.instruction);
         this.paintBigMessage(Z.game.bigMessage);
         // this.paintEntities(Z.game.shore.segments);
-    } else {
-        this.paintEntity(Z.intro.entity);
+    } else if (Z.intro && Z.intro.text) {
+        this.paintTexts(Z.intro.text);
     }
 };
 
@@ -114,6 +114,43 @@ Z.Canvas.prototype.paintPath = function(path) {
             this.drawPathPoint(path.points[i]);
         }
     }
+};
+
+/**
+ * @param {Array.<Z.Text>} texts
+ */
+Z.Canvas.prototype.paintTexts = function(texts) {
+    for (var i = 0, m = texts.length; i < m; i++) {
+        this.paintText(texts[i]);
+    }
+};
+
+/**
+ * @param {Z.Text} text
+ */
+Z.Canvas.prototype.paintText = function(text) {
+    var ctx = this.ctx, x = text.x, y = text.y;
+
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    ctx.font = text.size + 'px arial';
+    ctx.textAlign = text.align;
+
+    switch (text.align) {
+        case 'center':
+            x += this.width / 2;
+            break;
+        case 'right':
+            x = this.width - x;
+            break;
+    }
+
+    ctx.fillText(text.str, x - 0.5, y - 0.5);
+    ctx.fillText(text.str, x - 0.5, y + 0.5);
+    ctx.fillText(text.str, x + 0.5, y - 0.5);
+    ctx.fillText(text.str, x + 0.5, y + 0.5);
+    ctx.fillText(text.str, x + 1, y + 1);
+    ctx.fillStyle = 'white';
+    ctx.fillText(text.str, x, y);
 };
 
 /**
