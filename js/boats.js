@@ -37,7 +37,10 @@ Z.Ferry.prototype.targetReached = function() {
  * @constructor
  */
 Z.Barge = function(path) {
-    Z.Boat.call(this, 'img/barge.png', path.points[0], 0);
+    var images, image;
+    images = ['img/barge.png', 'img/barge_02.png', 'img/barge_03.png']; 
+    image = images[Math.floor(Math.random() * images.length)];
+    Z.Boat.call(this, image, path.points[0], 0);
     this.path = path;
     this.agility = 20;
     this.maxSpeed = 0.5;
@@ -59,7 +62,10 @@ Z.util.extend(
  * @constructor
  */
 Z.CanalBoat = function(path) {
-    Z.Boat.call(this, 'img/canalboat.png', path.points[0], 0);
+    var images, image;
+    images = ['img/canalboat.png', 'img/canalboat_02.png']; 
+    image = images[Math.floor(Math.random() * images.length)];
+    Z.Boat.call(this, image, path.points[0], 0);
     this.path = path;
     this.agility = 30;
     this.maxSpeed = 1;
@@ -81,7 +87,10 @@ Z.util.extend(
  * @constructor
  */
 Z.SpeedBoat = function(path) {
-    Z.Boat.call(this, 'img/speedboat.png', path.points[0], 0);
+    var images, image;
+    images = ['img/speedboat.png', 'img/speedboat_02.png']; 
+    image = images[Math.floor(Math.random() * images.length)];
+    Z.Boat.call(this, image, path.points[0], 0);
     this.path = path;
     this.agility = 40;
     this.maxSpeed = 3;
