@@ -88,7 +88,7 @@ Z.util.extend(
  */
 Z.SpeedBoat = function(path) {
     var images, image;
-    images = ['img/speedboat.png', 'img/speedboat_02.png', 'img/speedboat_03.png']; 
+    images = ['img/speedboat.png', 'img/speedboat_02.png', 'img/speedboat_03.png', 'img/speedboat_04.png']; 
     image = images[Math.floor(Math.random() * images.length)];
     Z.Boat.call(this, image, path.points[0], 0);
     this.path = path;
