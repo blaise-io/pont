@@ -27,3 +27,4 @@ is scanned using Layar. (currently not working)
 ## Known issues
 
  * Audio may not play, music may not loop
+ * Cannot restart game after Game Over without refreshing page
