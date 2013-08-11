@@ -48,6 +48,7 @@ Z.Audio.prototype.pauseMusicTemp = function() {
     try {
         this.obj.music.pause();
         window.setTimeout(function() {
+            this.obj.music.loop = true;
             this.obj.music.play();
         }.bind(this), 2000);
     } catch (e) {}
