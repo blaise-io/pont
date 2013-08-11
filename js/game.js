@@ -39,10 +39,10 @@ Z.Game = function() {
 
 Z.Game.prototype.setupTexts = function() {
     this.textInstruct = new Z.Text('', 'left', 10, 20);
-    this.textLevel = new Z.Text(Z.STR.UI_LEVEL + this.level, 'right', 10, 20);
-    this.textScore = new Z.Text(Z.STR.UI_SCORE + this.score, 'right', 120, 20);
     this.textHeader = new Z.HeaderText('', 'center');
     this.textMessage = new Z.MiddleText('', 'center');
+    this.textLevel = new Z.Text(Z.STR.UI_LEVEL + this.level, 'right', 10, 20);
+    this.textScore = new Z.Text(Z.STR.UI_SCORE + this.score, 'right', 120, 20);
     this.texts = [
         this.textInstruct,
         this.textLevel,
