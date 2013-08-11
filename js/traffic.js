@@ -9,7 +9,8 @@ Z.Traffic = function(level) {
     this.boats = [];
     this.boats.push(this.getRandomBoat());
     this.spawnBoatProgress = 0;
-    this.spawnBoatInterval = 4500 * Math.sqrt(level);
+    this.spawnBoatInterval = 2000 / Math.sqrt(level);
+    console.log('level: ' + level + ', interval: ' + this.spawnBoatInterval);
 };
 
 Z.Traffic.prototype.getRandomBoat = function() {

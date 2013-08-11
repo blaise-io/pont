@@ -124,6 +124,7 @@ Z.Game.prototype.setFerryAtTarget = function() {
 
 Z.Game.prototype.switchTarget = function() {
     this.score++;
+    this.detectLevelUp();
     Z.audio.playComplete();
     this.ferry.path = null;
     this.setFerryAtTarget();
@@ -135,6 +136,12 @@ Z.Game.prototype.switchTarget = function() {
         this.ignoreInput = false;
     }.bind(this), 2000);
 };
+
+Z.Game.prototype.detectLevelUp = function() {
+    if (0 === this.score % 1) {
+        this.traffic = new Z.Traffic(++this.level);
+    }
+}
 
 /**
  * @param {Array.<Z.Point>} points
