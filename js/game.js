@@ -30,7 +30,7 @@ Z.Game = function() {
     this.target = this.getTargetEntity();
     this.ferry = new Z.Ferry(this.pointBSM, this.radianBSM);
     this.shore = new Z.Shore();
-    this.traffic = new Z.Traffic(this.level);
+    this.traffic = new Z.Traffic(this);
 
     this.intersectHandler = new Z.Intersect();
     this.eventHandler = new Z.EventHandler();
@@ -156,8 +156,8 @@ Z.Game.prototype.switchTarget = function() {
 };
 
 Z.Game.prototype.detectLevelUp = function() {
-    if (0 === this.score % 3) {
-        this.traffic = new Z.Traffic(++this.level);
+    if (0 === this.score % 2) {
+        this.level++;
         this.textLevel.str = Z.STR.UI_LEVEL + this.level;
         this.textHeader.str = Z.STR.LEVEL_UP;
     }
