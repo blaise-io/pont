@@ -142,7 +142,7 @@ Z.Game.prototype.setFerryAtTarget = function() {
 Z.Game.prototype.switchTarget = function() {
     this.score++;
     this.textScore.str = Z.STR.UI_SCORE + this.score;
-    Z.audio.playComplete();
+    Z.audio.score.play();
     this.ferry.path = null;
     this.setFerryAtTarget();
     this.gotoCS = !this.gotoCS;
@@ -158,6 +158,7 @@ Z.Game.prototype.switchTarget = function() {
 Z.Game.prototype.detectLevelUp = function() {
     if (0 === this.score % 2) {
         this.level++;
+        Z.audio.level.play();
         this.textLevel.str = Z.STR.UI_LEVEL + this.level;
         this.textHeader.str = Z.STR.LEVEL_UP;
     }
@@ -200,7 +201,8 @@ Z.Game.prototype.detectCrash = function() {
 
     if (result) {
         Z.canvas.err = true;
-        Z.audio.playCrash();
+        Z.audio.music.pause();
+        Z.audio.crash.play();
         Z.canvas.paintCrash(result.point);
 
         this.textHeader.str = Z.STR.GAME_OVER;
