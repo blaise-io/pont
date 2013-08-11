@@ -156,7 +156,7 @@ Z.Game.prototype.switchTarget = function() {
 };
 
 Z.Game.prototype.detectLevelUp = function() {
-    if (0 === this.score % 1) {
+    if (0 === this.score % 3) {
         this.traffic = new Z.Traffic(++this.level);
         this.textLevel.str = Z.STR.UI_LEVEL + this.level;
         this.textHeader.str = Z.STR.LEVEL_UP;
