@@ -4,13 +4,17 @@
 
 /**
  * @constructor
+ * @param {Z.Game} game
  */
-Z.Traffic = function(level) {
+Z.Traffic = function(game) {
+    this.game = game;
     this.boats = [];
     this.boats.push(this.getRandomBoat());
     this.spawnBoatProgress = 0;
-    this.spawnBoatInterval = 8000 / (level * 0.5);
-    console.log('level: ' + level + ', interval: ' + this.spawnBoatInterval);
+};
+
+Z.Traffic.prototype.getInterval = function() {
+    return 8000 / (this.game.level * 0.5);
 };
 
 Z.Traffic.prototype.getRandomBoat = function() {
@@ -89,8 +93,8 @@ Z.Traffic.prototype.updateTraffic = function(diff) {
  */
 Z.Traffic.prototype.checkSpawnBoat = function(diff) {
     this.spawnBoatProgress += diff;
-    if (this.spawnBoatProgress > this.spawnBoatInterval) {
+    if (this.spawnBoatProgress > this.getInterval()) {
         this.boats.push(this.getRandomBoat());
-        this.spawnBoatProgress %= this.spawnBoatInterval;
+        this.spawnBoatProgress %= this.getInterval();
     }
 };
