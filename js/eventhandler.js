@@ -8,6 +8,7 @@
 Z.EventHandler = function() {
     this.recording = false;
     this.addListeners();
+    console.log('INIT');
 };
 
 Z.EventHandler.prototype.addListeners = function() {
@@ -35,8 +36,8 @@ Z.EventHandler.prototype.addListeners = function() {
 
 Z.EventHandler.prototype.getEventPoint = function(ev) {
     return new Z.Point(
-        ev.pageX || ev.touches[0].pageX,
-        ev.pageY || ev.touches[0].pageY
+        ev.pageX || (ev.touches && ev.touches.length && ev.touches[0].pageX),
+        ev.pageY || (ev.touches && ev.touches.length && ev.touches[0].pageY)
     );
 };
 

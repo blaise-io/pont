@@ -11,8 +11,7 @@ Z.Intro = function() {
         new Z.MiddleText(Z.LANG.DUTCH, 'left', 45),
         new Z.MiddleText(Z.LANG.ENGLISH, 'right', 45)
     ];
-
-    document.ontouchend = document.onclick = this.detectLanguage.bind(this);
+    document.onclick = document.ontouchstart = this.detectLanguage.bind(this);
 };
 
 Z.Intro.prototype.detectLanguage = function(ev) {
@@ -24,7 +23,7 @@ Z.Intro.prototype.detectLanguage = function(ev) {
             Z.STR = Z.LANG.EN;
         }
         this.showIntro();
-        Z.audio.music.play();
+        Z.audio.playMusic();
     }
 };
 
@@ -35,7 +34,8 @@ Z.Intro.prototype.showIntro = function() {
         new Z.MiddleText(Z.STR.INSTRUCT3, 'left', 50, 55, 25)
     ];
 
-    document.ontouchend = document.onclick = this.gameStart.bind(this);
+    document.ontouchstart = null;
+    document.onclick = document.ontouchend = this.gameStart.bind(this);
 };
 
 Z.Intro.prototype.gameStart = function(ev) {
