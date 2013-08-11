@@ -20,6 +20,7 @@ Z.Game = function() {
     this.radianCS = 2.25;
 
     this.score = 0;
+    this.level = 1;
 
     this.gotoCS = true;
     this.updateInstruction();
@@ -28,7 +29,7 @@ Z.Game = function() {
     this.target = this.getTargetEntity();
     this.ferry = new Z.Ferry(this.pointBSM, this.radianBSM);
     this.shore = new Z.Shore();
-    this.traffic = new Z.Traffic(1);
+    this.traffic = new Z.Traffic(this.level);
 
     this.intersectHandler = new Z.Intersect();
     this.eventHandler = new Z.EventHandler();
