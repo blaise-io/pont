@@ -48,8 +48,12 @@ Z.Audio.prototype.pauseMusicTemp = function() {
     try {
         this.obj.music.pause();
         window.setTimeout(function() {
-            this.obj.music.loop = true;
             this.obj.music.play();
+            this.obj.music.addEventListener('ended', function () {
+                this.obj.music.src += '#'; // Safari
+                this.obj.music.currentTime = 0;
+                this.obj.music.play();
+            }.bind(this), false);
         }.bind(this), 2000);
     } catch (e) {}
 };
