@@ -24,10 +24,3 @@ The game is meant to be playable on both desktop and your mobile phone in AR, wh
 [a map of the IJ](http://images.layar.com/panels/referenceimage/img37ee2091-c0cd-4e94-a96f-0d2351c12e75.jpeg) 
 is scanned using Layar. (currently not working)
 
-
-## To do / known issues
-
- * Add English translation
- * Fix script error that is breaking the game in AR using Layar
- * Fix bug where the ferry skips points in the path
- * Add leveling with more and faster traffic
