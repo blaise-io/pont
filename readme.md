@@ -7,7 +7,8 @@
 
 ## [Play here!](http://blaise-io.github.io/pont/?map) (warning: has audio)
 
-![Screenshot](http://i.imgur.com/KABfJh8.png)
+
+[![Screenshot](http://i.imgur.com/KABfJh8.png)](http://blaise-io.github.io/pont/?map)
 
 ## Description
 
