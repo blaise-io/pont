@@ -1,4 +1,4 @@
-# Pont (‘Ferry’)
+# Pont aka Ferry
 
  * [Code by Blaise Kal](https://github.com/blaise-io)
  * [Graphics and Music by David Stotijn](https://github.com/dstotijn)
