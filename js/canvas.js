@@ -32,14 +32,19 @@ Z.Canvas.prototype.paint = function() {
         Z.game.updateGame();
         this.paintEntity(Z.game.target);
         this.paintEntities(Z.game.docks);
-        this.paintPath(Z.game.ferry.path);
         this.paintEntities(Z.game.traffic.boats);
-        this.paintEntity(Z.game.ferry);
+        if (Z.game.ferry) {
+            this.paintPath(Z.game.ferry.path);
+            this.paintEntity(Z.game.ferry);
+        }
         this.paintTexts(Z.game.texts);
         // this.paintEntities(Z.game.shore.segments);
-    } else if (Z.intro && Z.intro.text) {
-        this.paintTexts(Z.intro.text);
     }
+
+    if (Z.intro && Z.intro.texts) {
+        this.paintTexts(Z.intro.texts);
+    }
+
 };
 
 /**
@@ -59,49 +64,8 @@ Z.Canvas.prototype.paintCrash = function(point) {
     var ctx = this.ctx;
 
     ctx.fillStyle = 'red';
-    ctx.fillRect(point.x, point.y, 4, 4);
+    ctx.fillRect(point.x, point.y, 6, 6);
 };
-
-/**
- * @param {number} score
- */
-Z.Canvas.prototype.paintScore = function(score) {
-    var ctx = this.ctx;
-    ctx.fillStyle = 'black';
-    ctx.font = '20px arial';
-    ctx.textAlign = 'right';
-    ctx.fillText('Score: ' + score, this.width - 15, 30);
-    ctx.fillStyle = 'white';
-    ctx.fillText('Score: ' + score, this.width - 15, 29);
-};
-
-/**
- * @param {string} direction
- */
-Z.Canvas.prototype.paintInstruction = function(direction) {
-    var ctx = this.ctx;
-    ctx.fillStyle = 'black';
-    ctx.font = '20px arial';
-    ctx.textAlign = 'left';
-    ctx.fillText(direction, 15, 30);
-    ctx.fillStyle = 'white';
-    ctx.fillText(direction, 15, 29);
-};
-
-
-/**
- * @param {string} bigMessage
- */
-Z.Canvas.prototype.paintBigMessage = function(bigMessage) {
-    var ctx = this.ctx;
-    ctx.fillStyle = 'black';
-    ctx.font = '30px arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(bigMessage, this.width / 2, this.height / 2);
-    ctx.fillStyle = 'white';
-    ctx.fillText(bigMessage, this.width / 2, (this.height / 2) - 1);
-};
-
 
 /**
  * @param {Z.Path} path
@@ -129,7 +93,7 @@ Z.Canvas.prototype.paintTexts = function(texts) {
 Z.Canvas.prototype.paintText = function(text) {
     var ctx = this.ctx, x = text.x, y = text.y;
 
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
     ctx.font = text.size + 'px arial';
     ctx.textAlign = text.align;
 

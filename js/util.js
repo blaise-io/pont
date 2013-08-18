@@ -29,6 +29,17 @@ Z.util = {
                 source[k] = target[k];
             }
         }
+    },
+
+    /**
+     * @param {Function} callback
+     */
+    onInteraction: function(callback) {
+        if ('ontouchstart' in document) {
+            document.ontouchstart = callback;
+        } else {
+            document.onclick = callback;
+        }
     }
 
 };

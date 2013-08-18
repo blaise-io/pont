@@ -19,7 +19,7 @@ Z.EventHandler.prototype.addListeners = function() {
         err : this.eventStop.bind(this)
     };
 
-    if ('ontouchmove' in document) {
+    if ('ontouchstart' in document) {
         document.ontouchstart = function(ev) {
             ev.preventDefault(); // Don't scroll the page
         };

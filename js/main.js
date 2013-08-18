@@ -8,6 +8,7 @@ Z.main = function() {
     Z.canvas = new Z.Canvas();
     Z.intro = new Z.Intro();
     Z.audio = new Z.Audio();
+    Z.game = new Z.Game();
 };
 
 document.onreadystatechange = function() {

@@ -14,7 +14,7 @@ Z.Traffic = function(game) {
 };
 
 Z.Traffic.prototype.getInterval = function() {
-    return 8000 / (this.game.level * 0.5);
+    return 5000 / (this.game.level * 0.2);
 };
 
 Z.Traffic.prototype.getRandomBoat = function() {

@@ -26,7 +26,7 @@ Z.LANG.EN = {
 
 Z.LANG.NL = {
     INSTRUCT1      : 'Vaar de pont naar de overkant',
-    INSTRUCT2      : 'Tik/Sleep een traject hoe de pont moet varen',
+    INSTRUCT2      : 'Tik/Sleep het traject dat de pont moet varen',
     INSTRUCT3      : 'Klaar? Tik het scherm om te starten!',
     TIP_CRASH_BOAT : 'Tip: Niet tegen andere boten botsen!',
     TIP_BREAK_FERRY: 'Tip: Tik recht achter de pont om te remmen.',

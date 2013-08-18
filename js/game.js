@@ -23,21 +23,25 @@ Z.Game = function() {
 
     this.gotoCS = true;
 
-    this.setupTexts();
-    this.updateInstruction();
-
+    this.texts = [];
     this.docks = this.getDockEntities();
     this.target = this.getTargetEntity();
-    this.ferry = new Z.Ferry(this.pointBSM, this.radianBSM);
     this.shore = new Z.Shore();
     this.traffic = new Z.Traffic(this);
+};
 
+Z.Game.prototype.start = function() {
+
+    this.setInitialTexts();
+    this.updateInstruction();
+
+    this.ferry = new Z.Ferry(this.pointBSM, this.radianBSM);
     this.intersectHandler = new Z.Intersect();
     this.eventHandler = new Z.EventHandler();
     this.eventHandler.onUpdate = this.updateFerryPath.bind(this);
 };
 
-Z.Game.prototype.setupTexts = function() {
+Z.Game.prototype.setInitialTexts = function() {
     this.textInstruct = new Z.Text('', 'left', 10, 20);
     this.textHeader = new Z.HeaderText('', 'center');
     this.textMessage = new Z.MiddleText('', 'center');
@@ -56,9 +60,11 @@ Z.Game.prototype.updateGame = function() {
     var diff = new Date() - this.updated;
     if (diff > 7 && diff < 200) {
         this.traffic.updateTraffic(diff);
-        this.ferry.updateBoat(diff);
-        this.updateCollisions(diff);
-        this.detectArrival();
+        if (this.ferry) {
+            this.ferry.updateBoat(diff);
+            this.updateCollisions(diff);
+            this.detectArrival();
+        }
     }
     this.updated = new Date();
 };
@@ -184,7 +190,7 @@ Z.Game.prototype.updateFerryPath = function(points) {
 Z.Game.prototype.detectCrash = function() {
     var result;
 
-    if (!this.ferry.ready) {
+    if (!this.ferry.ready || !this.intersectHandler) {
         return;
     }
 
@@ -207,8 +213,10 @@ Z.Game.prototype.detectCrash = function() {
         this.textHeader.str = Z.STR.GAME_OVER;
         this.ignoreInput = true;
 
-        Z.canvas.canvas.onclick = function() {
-            window.location.reload(false);
-        };
+        window.setTimeout(function() {
+            Z.util.onInteraction(function() {
+                location.reload(false);
+            });
+        }, 1000);
     }
 };
