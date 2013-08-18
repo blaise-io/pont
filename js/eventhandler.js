@@ -8,7 +8,6 @@
 Z.EventHandler = function() {
     this.recording = false;
     this.addListeners();
-    console.log('INIT');
 };
 
 Z.EventHandler.prototype.addListeners = function() {
