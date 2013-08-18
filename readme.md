@@ -14,7 +14,7 @@ Instructions:
  * Click behind the ferry to break
  * Navigate the ferry to the opposite harbor and back
 
-![Screenshot](http://i.imgur.com/bioHyXc.png)
+![Screenshot](http://i.imgur.com/KABfJh8.png)
 
 ## Description
 
@@ -24,7 +24,6 @@ The game is meant to be playable on both desktop and your mobile phone in AR, wh
 [a map of the IJ](http://images.layar.com/panels/referenceimage/img37ee2091-c0cd-4e94-a96f-0d2351c12e75.jpeg) 
 is scanned using Layar. (currently not working)
 
-## Known issues
+## Known issue
 
- * Audio may not play, music may not loop
- * Cannot restart game after Game Over without refreshing page
+ * Audio is buggy in many browsers
