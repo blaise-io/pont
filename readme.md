@@ -10,14 +10,19 @@
 
 [![Screenshot](http://i.imgur.com/KABfJh8.png)](http://blaise-io.github.io/pont/?map)
 
+## Play in AR
+
+This map can be scanned at the ferry port at Buiksloterweg, but you can also scan it from your computer screen:
+
+![AR](http://i.imgur.com/LTheSSn.png)
+
 ## Description
 
 Pont is a cross-over between Flight Control and Frogger. 
 In the game you control the ferry that connects [Amsterdam Noord with Amsterdam](http://goo.gl/maps/01P5p).
-The game is playable on both desktop, your mobile phone/tablet with touch controls, and in AR, when 
-[this map of the IJ](http://images.layar.com/panels/referenceimage/img37ee2091-c0cd-4e94-a96f-0d2351c12e75.jpeg) 
-is scanned using [the Layar App](http://get.layar.com/).
+The game is playable on both desktop, your mobile phone/tablet with touch controls, and in AR using [the Layar App](http://get.layar.com/).
 
-## Known issue
+## Known issues
 
+ * Playing in AR is a bit annoying because you lose some accuracy
  * Audio is buggy in many browsers (partially our fault, partially browser’s)
