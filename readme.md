@@ -12,7 +12,7 @@
 
 ## Play in AR
 
-This map can be scanned at the ferry port at Buiksloterweg, but you can also scan it from your computer screen:
+This map can be scanned at the ferry port at Buiksloterweg: (but you may also scan it from your screen)
 
 ![AR](http://i.imgur.com/LTheSSn.png)
 
