@@ -14,16 +14,16 @@ Z.Traffic = function(game) {
 };
 
 Z.Traffic.prototype.getInterval = function() {
-    return 5000 / (this.game.level * 0.2);
+    return 7000 / Math.sqrt(this.game.level);
 };
 
 Z.Traffic.prototype.getRandomBoat = function() {
     var random = Math.random();
-    if (random < 0.2) { return this.getBarge(); }
-    else if (random < 0.25) { return this.getSpeedBoat(); }
-    else if (random < 0.45) { return this.getCanalBoat(); }
-    else if (random < 0.65) { return this.getBarge2(); }
-    else if (random < 0.8) { return this.getCanalBoat2(); }
+    if (random < 0.3) { return this.getBarge(); }
+    else if (random < 0.35) { return this.getSpeedBoat(); }
+    else if (random < 0.5) { return this.getCanalBoat(); }
+    else if (random < 0.75) { return this.getBarge2(); }
+    else { return this.getCanalBoat2(); }
 };
 
 Z.Traffic.prototype.getBarge = function() {
@@ -95,6 +95,6 @@ Z.Traffic.prototype.checkSpawnBoat = function(diff) {
     this.spawnBoatProgress += diff;
     if (this.spawnBoatProgress > this.getInterval()) {
         this.boats.push(this.getRandomBoat());
-        this.spawnBoatProgress %= this.getInterval();
+        this.spawnBoatProgress = 0;
     }
 };

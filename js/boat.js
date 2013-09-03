@@ -52,13 +52,24 @@ Z.Boat.prototype.updateBoat = function(diff) {
  * @param {Z.Point} target
  */
 Z.Boat.prototype.moveToTarget = function(target) {
-    var deceleration, radian, deltaTurning;
+    var deceleration, radian, prevDelta, deltaTurning;
+
+    radian = this.point.radianTo(target);
+
+    // Prevent pirouettes
+    prevDelta = this.prevRadian - radian;
+    if (prevDelta > Math.PI) {
+        this.radian -= (Math.PI % prevDelta) * 2;
+    } else if (prevDelta < -Math.PI) {
+        this.radian += (Math.PI % prevDelta) * 2;
+    }
+
+    this.prevRadian = radian;
 
     this.radian = this.point.dampRadianTo(
         this.radian, target, this.agility * Math.max(1, this.speed)
     );
 
-    radian = this.point.radianTo(target);
     deltaTurning = Math.abs(Z.util.getRadianDelta(radian, this.radian));
     deceleration = (deltaTurning * this.deceleration) * 4;
 

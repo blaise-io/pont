@@ -158,7 +158,7 @@ Z.Game.prototype.switchTarget = function() {
     this.ignoreInput = true;
     window.setTimeout(function() {
         this.ignoreInput = false;
-    }.bind(this), 2000);
+    }.bind(this), 1000);
 };
 
 Z.Game.prototype.detectLevelUp = function() {
