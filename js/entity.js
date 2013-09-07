@@ -5,13 +5,13 @@
 /**
  * @param {string} src
  * @param {Z.Point} point
- * @param {number=} angle
+ * @param {number=} radian
  * @param {number=} scale
  * @constructor
  */
-Z.Entity = function(src, point, angle, scale) {
+Z.Entity = function(src, point, radian, scale) {
     this.point = point;
-    this.radian = angle || 0;
+    this.radian = radian || 0;
     this.scale = scale || 1;
     this.ready = false;
     this.progress = 0;

@@ -24,7 +24,6 @@ Z.Audio.prototype.playCrash = function() {
 
 Z.Audio.prototype.playScore = function() {
     try {
-        this.obj.score.src += '#'; // Safari
         this.obj.score.play();
         this.pauseMusicTemp();
     } catch (e) {}
@@ -32,7 +31,6 @@ Z.Audio.prototype.playScore = function() {
 
 Z.Audio.prototype.playLevel = function() {
     try {
-        this.obj.level.src += '#'; // Safari
         this.obj.level.play();
         this.pauseMusicTemp();
     } catch (e) {}
@@ -50,7 +48,6 @@ Z.Audio.prototype.pauseMusicTemp = function() {
         window.setTimeout(function() {
             this.obj.music.play();
             this.obj.music.addEventListener('ended', function () {
-                this.obj.music.src += '#'; // Safari
                 this.obj.music.currentTime = 0;
                 this.obj.music.play();
             }.bind(this), false);
