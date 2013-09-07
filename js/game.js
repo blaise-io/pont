@@ -141,8 +141,9 @@ Z.Game.prototype.setFerryAtTarget = function() {
     if (this.gotoCS) {
         this.ferry.radian += Math.PI;
     } else {
-        this.ferry.radian += Math.PI;
+        this.ferry.radian -= Math.PI;
     }
+    document.title = this.ferry.radian;
 };
 
 Z.Game.prototype.switchTarget = function() {
