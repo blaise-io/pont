@@ -3,7 +3,9 @@
 'use strict';
 
 Z.LANG = {
+    TITLE  : 'Pont / Ferry',
     PICK   : 'Kies een taal / Pick a language',
+    CREDITS: 'Created by Blaise Kal & David Stotijn',
     DUTCH  : 'NEDERLANDS',
     ENGLISH: 'ENGLISH'
 };

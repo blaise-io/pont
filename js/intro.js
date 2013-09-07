@@ -7,9 +7,11 @@
  */
 Z.Intro = function() {
     this.texts = [
+        new Z.HeaderText(Z.LANG.TITLE, 140, 60),
         new Z.HeaderText(Z.LANG.PICK),
         new Z.MiddleText(Z.LANG.DUTCH, 'left', 45),
-        new Z.MiddleText(Z.LANG.ENGLISH, 'right', 45)
+        new Z.MiddleText(Z.LANG.ENGLISH, 'right', 45),
+        new Z.MiddleText(Z.LANG.CREDITS, 'right', 45, 220)
     ];
 
     Z.util.onInteraction(this.detectLanguage.bind(this));
