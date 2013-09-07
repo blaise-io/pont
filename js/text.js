@@ -22,11 +22,12 @@ Z.util.extend(
 );
 
 
-Z.HeaderText = function(str) {
+Z.HeaderText = function(str, y, size) {
     Z.MiddleText.apply(this, arguments);
     this.align = 'center';
-    this.size = 30;
-    this.y -= 50;
+    this.size = size || 30;
+    this.x = 0;
+    this.y -= y || 50;
 };
 
 Z.util.extend(
