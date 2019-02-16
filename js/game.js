@@ -201,7 +201,7 @@ Z.Game.prototype.detectCrash = function() {
     if (!result) {
         result = this.intersectHandler.hasIntersect(this.ferry, this.shore.segments);
         if (result) {
-            this.textMessage.str = Z.STR.TIP_BREAK_FERRY;
+            this.textMessage.str = Z.STR.TIP_BRAKE_FERRY;
         }
     }
 
