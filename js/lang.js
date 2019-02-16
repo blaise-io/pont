@@ -15,7 +15,7 @@ Z.LANG.EN = {
     INSTRUCT2      : 'Tap/Drag a path for the ferry to follow',
     INSTRUCT3      : 'Ready? Tap the screen to start!',
     TIP_CRASH_BOAT : 'Tip: Don’t crash into other boats!',
-    TIP_BREAK_FERRY: 'Tip: Tap straight behind the boat to break.',
+    TIP_BRAKE_FERRY: 'Tip: Tap straight behind the boat to brake.',
     SAIL_OPPOSITE  : 'Head back to the opposite harbor.',
     SAIL_TO_CS     : 'Head to Central Station',
     SAIL_TO_BSW    : 'Head to Buiksloterweg',
